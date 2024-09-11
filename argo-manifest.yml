@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: todo-app-argo
+  namespace: myapp
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/zainpratice/kube_manifest.git'
+    targetRevision: HEAD
+    path: 'manifest'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: myapp
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
